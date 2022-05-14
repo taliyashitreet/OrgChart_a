@@ -20,20 +20,20 @@ namespace ariel
 
         return *this;
     }
-    bool OrgChart::recursive_sub(Node &root, string father, string child)
+    bool OrgChart::recursive_sub(Node &start, string father, string child)
     {
-        if (root.name == father)
+        if (start.name == father)
         {
             Node enter;
             enter.name = child;
-            this->root.children.push_back(enter);
+            start.children.push_back(enter);
             return true;
         }
         else
         {
-            for (unsigned int i = 0; i < root.children.size(); i++)
+            for (unsigned int i = 0; i < start.children.size(); i++)
             {
-                if(recursive_sub(root.children.at(i), father, child)){
+                if(recursive_sub(start.children.at(i), father, child)){
                     return true;
                 }
             }
@@ -90,12 +90,13 @@ namespace ariel
         recursive_preorder(this->root);
         return &this->preorder_lst.at(0);
     }
-    void OrgChart::recursive_preorder(Node &root)
+    void OrgChart::recursive_preorder(Node &start)
     {
-        this->preorder_lst.push_back(root.name);
-        for (unsigned int i = 0; i < root.children.size(); i++)
+        this->preorder_lst.push_back(start.name);
+        for (unsigned int i = 0; i < start.children.size(); i++)
         {
-            recursive_preorder(root.children.at(i));
+           
+            recursive_preorder(start.children.at(i));
         }
     }
     string *OrgChart::end_preorder()

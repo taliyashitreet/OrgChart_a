@@ -11,7 +11,7 @@ OrgChart organization;
 CHECK_NOTHROW(organization.add_root("CEO"));
 CHECK_NOTHROW(organization.add_sub("CEO", "CTO"));        // Now the CTO is subordinate to the CEO
 CHECK_NOTHROW(organization.add_sub("CEO", "CFO"));         // Now the CFO is subordinate to the CEO
-CHECK_NOTHROW(organization.add_sub("CEO", "CFO"));         // Now the COO is subordinate to the CEO
+CHECK_NOTHROW(organization.add_sub("CEO", "COO"));         // Now the COO is subordinate to the CEO
 CHECK_NOTHROW(organization.add_sub("CTO", "VP_SW")); // Now the VP Software is subordinate to the CTO
 CHECK_NOTHROW(organization.add_sub("COO", "VP_BI"));      // Now the VP_BI is subordinate to the COO
 vector<string> level = {"CEO","CTO","CFO","COO","VP_SW","VP_BI"}; // level order
@@ -20,11 +20,14 @@ for (auto element : organization){ //this loop go like level order
     CHECK(level.at(index)==element);
     index+=1;
 }
+index = level.size()-1;
 for (auto it = organization.begin_reverse_order(); it != organization.reverse_order(); ++it)
   {
       CHECK(level.at(index)==*it); //revers loop of level order
       index-=1;
   }
+index =0;
+
 
 vector<string> pre = {"CEO","CTO","VP_SW","CFO","COO","VP_BI"};
 for (auto it=organization.begin_preorder(); it!=organization.end_preorder(); ++it) {
@@ -51,12 +54,13 @@ for (auto element : organization2){ //this loop go like level order
     CHECK(check.at(index)==element);
     index+=1;
 }
+index = check.size()-1;
 for (auto it = organization2.begin_reverse_order(); it != organization2.reverse_order(); ++it)
   {
       CHECK(check.at(index)==*it); //revers loop of level order
       index-=1;
   }
-
+index = 0;
 for (auto it=organization2.begin_preorder(); it!=organization2.end_preorder(); ++it) {
  CHECK(check.at(index)==*it);
  index+=1;
