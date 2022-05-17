@@ -17,11 +17,12 @@ namespace ariel
         Node root;
         bool recursive_sub(Node &node, string tather, string child);
         void recursive_level(Node &node);
-        void revers_order_();
+        void recursive_revers(Node &node);
         void recursive_preorder(Node &node);
-        vector<string> level_order_lst;
-        vector<string> reverse_order_lst;
-        vector<string> preorder_lst;
+        vector<string> order;
+        // vector<string> level_order_lst;
+        // vector<string> reverse_order_lst;
+        // vector<string> preorder_lst;
 
 
     public:
